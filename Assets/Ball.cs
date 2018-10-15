@@ -25,7 +25,7 @@ public class Ball : MonoBehaviour {
 	void Update ()
     {
         if (!counting)
-            StartCoroutine(WaitTime(30f));
+            StartCoroutine(WaitTime(40f));
 
         transform.position += Direction * Velocity * Time.deltaTime;
 	}
@@ -33,24 +33,40 @@ public class Ball : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        bool wrongCollision = false;
-        Vector2 normal = collision.contacts[0].normal;
-        EdgesCollisions edgesCollisions = collision.transform.GetComponent<EdgesCollisions>();
+        if (collision.gameObject.tag == "Wall") {
+            Debug.Log("wall bounce");
+            List<Vector2> normals = new List<Vector2>();
 
-        if (!wrongCollision)
-        {
-            Direction = Vector2.Reflect(Direction, normal);
-            Direction.Normalize();
+            ContactPoint2D[] contacts = new ContactPoint2D[4];
+
+            collision.GetContacts(contacts);
+
+            for (int i = 0; i < contacts.Length; i++)
+            {
+                normals.Add(contacts[i].normal);
+            }
+
+            EdgesCollisions edgesCollisions = collision.transform.GetComponent<EdgesCollisions>();
+
+            foreach (Vector2 normal in normals)
+            {
+                Direction = Vector2.Reflect(Direction, normal);
+                Direction.Normalize();
+            }
         }
+    }
 
+    private void OnMouseEnter()
+    {
+        Destroy(transform.gameObject);
+        Debug.Log("Good Job");
     }
 
     public IEnumerator WaitTime(float time2Count)
     {
-        Debug.Log("it's ya boy");
         counting = true;
         yield return new WaitForSecondsRealtime(time2Count);
-        Debug.Log("it's ya boy2");
+
         Destroy(transform.gameObject);
         counting = false;
     }

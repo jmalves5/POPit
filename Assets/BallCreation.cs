@@ -17,13 +17,12 @@ public class BallCreation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if(!waiting)
-            StartCoroutine(WaitTime(5f)); //Ball generation time
+            StartCoroutine(WaitTime(10f)); //Ball generation time
 
         if (spawn) {
-            aux.x = Random.Range(-450, 450);
-            aux.y = Random.Range(-250, 250);
+            aux.x = Random.Range(-300, 300);
+            aux.y = Random.Range(-200, 200);
             Ball newBall = Instantiate(BounceBall, aux, BounceBall.transform.rotation);
-            //BounceBall.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
             spawn = false;
         }
     }
