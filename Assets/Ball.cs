@@ -11,6 +11,7 @@ public class Ball : MonoBehaviour {
     private Vector3 oldPos;
     private Vector3 aux;
     public Ball BounceBall;
+    public bool wasLost = false;
 
    
     void Start ()
@@ -24,8 +25,17 @@ public class Ball : MonoBehaviour {
 	
 	void Update ()
     {
+        if(!wasLost && (transform.position.x> Screen.width/2 || transform.position.y>Screen.height/2 || transform.position.x < -Screen.width/2 || transform.position.y < -Screen.height/2))
+        {
+            GameControl.lost = true;
+            wasLost = true;
+        }
+
+
+        Velocity = GameControl.control.getVelocity();
+
         if (!counting)
-            StartCoroutine(WaitTime(40f));
+            StartCoroutine(WaitTime(GameControl.control.getNObjects()*5f));
 
         transform.position += Direction * Velocity * Time.deltaTime;
 	}
@@ -33,11 +43,13 @@ public class Ball : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall") {
+        EdgesCollisions edgesCollisions = collision.transform.GetComponent<EdgesCollisions>();
+
+        if (collision.gameObject.tag == "Wall" || 1==1) {
             Debug.Log("wall bounce");
             List<Vector2> normals = new List<Vector2>();
 
-            ContactPoint2D[] contacts = new ContactPoint2D[4];
+            ContactPoint2D[] contacts = new ContactPoint2D[16];
 
             collision.GetContacts(contacts);
 
@@ -46,20 +58,23 @@ public class Ball : MonoBehaviour {
                 normals.Add(contacts[i].normal);
             }
 
-            EdgesCollisions edgesCollisions = collision.transform.GetComponent<EdgesCollisions>();
+            
 
             foreach (Vector2 normal in normals)
             {
                 Direction = Vector2.Reflect(Direction, normal);
                 Direction.Normalize();
+
             }
         }
     }
 
     private void OnMouseEnter()
     {
-        Destroy(transform.gameObject);
         Debug.Log("Good Job");
+        GameControl.control.incrementScore();
+        Destroy(transform.gameObject);
+        GameControl.lost = true;
     }
 
     public IEnumerator WaitTime(float time2Count)

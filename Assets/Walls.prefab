@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4444053686305512}
   - component: {fileID: 114510340692759042}
-  - component: {fileID: 68902470069515354}
+  - component: {fileID: 68611999857350736}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Wall
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &68902470069515354
+--- !u!68 &68611999857350736
 EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,18 +49,19 @@ EdgeCollider2D:
   m_GameObject: {fileID: 1532842433003422}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 6bd696abf48cce148b51c914e0c6e967, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 458.10757, y: -253.82687}
-  - {x: 455.36594, y: 257.96307}
-  - {x: -458.75803, y: 256.83554}
-  - {x: -450.9043, y: -258.32053}
-  - {x: 458.05917, y: -259.6311}
+  - {x: -456.57788, y: -259.83044}
+  - {x: -458.00067, y: -256.37677}
+  - {x: 456.16675, y: -255.22098}
+  - {x: 457.7614, y: 257.488}
+  - {x: -456.02612, y: 257.6151}
+  - {x: -456.00784, y: -268.3146}
 --- !u!114 &114510340692759042
 MonoBehaviour:
   m_ObjectHideFlags: 1
