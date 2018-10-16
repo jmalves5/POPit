@@ -11,11 +11,12 @@ public class Ball : MonoBehaviour {
     private Vector3 oldPos;
     private Vector3 aux;
     public Ball BounceBall;
-    public bool wasLost = false;
+    public Rigidbody2D rb;
 
    
     void Start ()
     {
+        rb = GetComponent<Rigidbody2D>();
         Velocity = 200;
         Direction = new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0);
         Direction.Normalize(); // equivalente a dizer direction = direcion.normalized;
@@ -25,10 +26,10 @@ public class Ball : MonoBehaviour {
 	
 	void Update ()
     {
-        if(!wasLost && (transform.position.x> Screen.width/2 || transform.position.y>Screen.height/2 || transform.position.x < -Screen.width/2 || transform.position.y < -Screen.height/2))
+        if(transform.position.x> Screen.width/2 || transform.position.y>Screen.height/2 || transform.position.x < -Screen.width/2 || transform.position.y < -Screen.height/2)
         {
             GameControl.lost = true;
-            wasLost = true;
+            Destroy(transform.gameObject);
         }
 
 
@@ -37,15 +38,28 @@ public class Ball : MonoBehaviour {
         if (!counting)
             StartCoroutine(WaitTime(GameControl.control.getNObjects()*5f));
 
-        transform.position += Direction * Velocity * Time.deltaTime;
+       // transform.position += Direction * Velocity * Time.deltaTime;
 	}
+
+
+    void FixedUpdate()
+    {
+
+        //[.....comando de teclas aqui...]
+
+        //Vector3 movement = new Vector3(1, 1f, 0);
+        //rb.velocity = movement * 0.5f;
+        
+
+        transform.position += Direction * Velocity * Time.deltaTime;
+    }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         EdgesCollisions edgesCollisions = collision.transform.GetComponent<EdgesCollisions>();
 
-        if (collision.gameObject.tag == "Wall" || 1==1) {
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Ball") {
             Debug.Log("wall bounce");
             List<Vector2> normals = new List<Vector2>();
 
@@ -58,7 +72,7 @@ public class Ball : MonoBehaviour {
                 normals.Add(contacts[i].normal);
             }
 
-            
+
 
             foreach (Vector2 normal in normals)
             {
@@ -66,15 +80,23 @@ public class Ball : MonoBehaviour {
                 Direction.Normalize();
 
             }
+        } 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Cursor")
+        {
+            Debug.Log("Good Job");
+            GameControl.control.incrementScore();
+            Destroy(transform.gameObject);
+            GameControl.lost = true;
         }
     }
 
     private void OnMouseEnter()
     {
-        Debug.Log("Good Job");
-        GameControl.control.incrementScore();
-        Destroy(transform.gameObject);
-        GameControl.lost = true;
+      
     }
 
     public IEnumerator WaitTime(float time2Count)
