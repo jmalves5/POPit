@@ -27,7 +27,7 @@ public class BallCreation : MonoBehaviour {
 
         if (spawn) {
             aux.x = Random.Range(-300, 300);
-            aux.y = Random.Range(-200, 150);
+            aux.y = Random.Range(-200, 100);
             aux.z = 0;
             Ball newBall = Instantiate(BounceBall, aux, BounceBall.transform.rotation);
             spawn = false;

@@ -17,7 +17,6 @@ public class Ball : MonoBehaviour {
     void Start ()
     {
         rb = GetComponent<Rigidbody2D>();
-        Velocity = 200;
         Direction = new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0);
         Direction.Normalize(); // equivalente a dizer direction = direcion.normalized;
         counting = false;
@@ -31,7 +30,6 @@ public class Ball : MonoBehaviour {
             GameControl.lost = true;
             Destroy(transform.gameObject);
         }
-
 
         Velocity = GameControl.control.getVelocity();
 
@@ -63,23 +61,13 @@ public class Ball : MonoBehaviour {
             Debug.Log("wall bounce");
             List<Vector2> normals = new List<Vector2>();
 
-            ContactPoint2D[] contacts = new ContactPoint2D[16];
+            ContactPoint2D[] contacts = new ContactPoint2D[1];
 
             collision.GetContacts(contacts);
 
-            for (int i = 0; i < contacts.Length; i++)
-            {
-                normals.Add(contacts[i].normal);
-            }
-
-
-
-            foreach (Vector2 normal in normals)
-            {
-                Direction = Vector2.Reflect(Direction, normal);
-                Direction.Normalize();
-
-            }
+            Direction = Vector2.Reflect(Direction, contacts[0].normal);
+            Direction.Normalize();
+         
         } 
     }
 
@@ -92,11 +80,6 @@ public class Ball : MonoBehaviour {
             Destroy(transform.gameObject);
             GameControl.lost = true;
         }
-    }
-
-    private void OnMouseEnter()
-    {
-      
     }
 
     public IEnumerator WaitTime(float time2Count)
