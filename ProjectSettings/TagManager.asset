@@ -8,6 +8,10 @@ TagManager:
   - Wall
   - Ball
   - Cursor
+  - ceiling
+  - floor
+  - rwall
+  - lwall
   layers:
   - Default
   - TransparentFX

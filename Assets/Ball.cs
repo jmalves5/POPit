@@ -11,12 +11,11 @@ public class Ball : MonoBehaviour {
     private Vector3 oldPos;
     private Vector3 aux;
     public Ball BounceBall;
-    public Rigidbody2D rb;
+
 
    
     void Start ()
     {
-        rb = GetComponent<Rigidbody2D>();
         Direction = new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0);
         Direction.Normalize(); // equivalente a dizer direction = direcion.normalized;
         counting = false;
@@ -34,60 +33,81 @@ public class Ball : MonoBehaviour {
         Velocity = GameControl.control.getVelocity();
 
         if (!counting)
+        {
             StartCoroutine(WaitTime(GameControl.control.getNObjects()*5f));
-
-       // transform.position += Direction * Velocity * Time.deltaTime;
-	}
+        }
+            
+    }
 
 
     void FixedUpdate()
     {
-
-        //[.....comando de teclas aqui...]
-
-        //Vector3 movement = new Vector3(1, 1f, 0);
-        //rb.velocity = movement * 0.5f;
-        
-
         transform.position += Direction * Velocity * Time.deltaTime;
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         EdgesCollisions edgesCollisions = collision.transform.GetComponent<EdgesCollisions>();
 
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Ball") {
-            Debug.Log("wall bounce");
-            List<Vector2> normals = new List<Vector2>();
-
-            ContactPoint2D[] contacts = new ContactPoint2D[1];
-
-            collision.GetContacts(contacts);
-
-            Direction = Vector2.Reflect(Direction, contacts[0].normal);
-            Direction.Normalize();
-         
-        } 
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
         if (collision.gameObject.tag == "Cursor")
         {
             Debug.Log("Good Job");
             GameControl.control.incrementScore();
             Destroy(transform.gameObject);
-            GameControl.lost = true;
+            GameControl.control.decrementCurrNumberObjects();
+        }
+
+        if (collision.gameObject.tag == "ceiling" || collision.gameObject.tag == "lwall" ||
+                collision.gameObject.tag == "rwall" || collision.gameObject.tag == "floor")
+        {
+
+            Vector2 normal = new Vector2(0, 0);
+
+            switch (collision.gameObject.tag)
+            {
+                case "ceiling":
+                    normal = new Vector2(0, -1);
+                    break;
+                case "floor":
+                    normal = new Vector2(0, 1);
+                    break;
+                case "rwall":
+                    normal = new Vector2(-1, 0);
+                    break;
+                case "lwall":
+                    normal = new Vector2(1, 0);
+                    break;
+            }
+
+            Direction = Vector2.Reflect(Direction, normal);
+            Direction.Normalize();
         }
     }
+
+    //UNCOMMENT THIS FOR BALL COLLISIONS. WARNING: MAY CAUSE INSTABILITY IN WALL COLLISIONS.
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Ball")
+    //    {
+    //        List<Vector2> normals = new List<Vector2>();
+
+    //        ContactPoint2D[] contacts = new ContactPoint2D[1];
+
+    //        collision.GetContacts(contacts);
+
+    //        Direction = Vector2.Reflect(Direction, contacts[0].normal);
+    //        Direction.Normalize();
+    //    }
+    //}
 
     public IEnumerator WaitTime(float time2Count)
     {
         counting = true;
         yield return new WaitForSecondsRealtime(time2Count);
 
-        Destroy(transform.gameObject);
+        //UNCOMMENT TO ENABLE OBJECT SELF-DESTRUCTION
+        //Destroy(transform.gameObject);
         counting = false;
     }
 }

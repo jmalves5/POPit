@@ -21,6 +21,9 @@ GameObject:
   - component: {fileID: 4444053686305512}
   - component: {fileID: 114510340692759042}
   - component: {fileID: 68611999857350736}
+  - component: {fileID: 68384411628378654}
+  - component: {fileID: 68088668978793334}
+  - component: {fileID: 68906436544456894}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Wall
@@ -41,7 +44,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &68088668978793334
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1532842433003422}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 8be6341e1ce3f4cec9902bc34f72d20a, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -456.57788, y: -259.83044}
+  - {x: -458.00067, y: -256.37677}
+  - {x: 456.16675, y: -255.22098}
+  - {x: 457.7614, y: 257.488}
+  - {x: -456.02612, y: 257.6151}
+  - {x: -456.00784, y: -268.3146}
+--- !u!68 &68384411628378654
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1532842433003422}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 8be6341e1ce3f4cec9902bc34f72d20a, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -456.57788, y: -259.83044}
+  - {x: -458.00067, y: -256.37677}
+  - {x: 456.16675, y: -255.22098}
+  - {x: 457.7614, y: 257.488}
+  - {x: -456.02612, y: 257.6151}
+  - {x: -456.00784, y: -268.3146}
 --- !u!68 &68611999857350736
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1532842433003422}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 8be6341e1ce3f4cec9902bc34f72d20a, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -456.57788, y: -259.83044}
+  - {x: -458.00067, y: -256.37677}
+  - {x: 456.16675, y: -255.22098}
+  - {x: 457.7614, y: 257.488}
+  - {x: -456.02612, y: 257.6151}
+  - {x: -456.00784, y: -268.3146}
+--- !u!68 &68906436544456894
 EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

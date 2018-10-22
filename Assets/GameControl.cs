@@ -19,6 +19,10 @@ public class GameControl : MonoBehaviour
 
     private static float Velocity = 200;  //plate velocity
     private static float ObjectsNumber = 4;
+    private static float spawningRate = 2;
+    private static float currNumberofObjects = 0;
+
+
     public static string UsedJoint;  //Used joint to control cursor
     public static bool lost = false;
     //public static string PlayerName; //player name
@@ -75,6 +79,8 @@ public class GameControl : MonoBehaviour
         ObjectsNumber = numberOfObjects;
     }
 
+
+
     //Get plate velocity
     public float getVelocity()
     {
@@ -85,6 +91,37 @@ public class GameControl : MonoBehaviour
     public void SetVelocity(float NewVelocity)
     {
         Velocity = NewVelocity;
+    }
+
+
+
+    //Get spawn rate
+    public float getSpawnRate()
+    {
+        return spawningRate;
+    }
+
+    //Set spawn rate
+    public void SetSpawnRate(float NewSpawnRate)
+    {
+        spawningRate = NewSpawnRate;
+    }
+
+    //get number of objects
+    public float getCurrNumberObjects()
+    {
+        return currNumberofObjects;
+    }
+
+    //Increment number of objects
+    public void incrementCurrNumberObjects() {
+        currNumberofObjects++;
+    }
+
+    //decrement number of objects
+    public void decrementCurrNumberObjects()
+    {
+        currNumberofObjects--;
     }
 
 

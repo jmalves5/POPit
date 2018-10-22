@@ -23,15 +23,16 @@ public class BallCreation : MonoBehaviour {
 
 
         if(!waiting)
-            StartCoroutine(WaitTime(5f)); //Ball generation time
+            StartCoroutine(WaitTime(10f / GameControl.control.getSpawnRate())); //Ball generation time
 
-        if (spawn) {
+        if (spawn && GameControl.control.getCurrNumberObjects()<GameControl.control.getNObjects()) {
             aux.x = Random.Range(-300, 300);
             aux.y = Random.Range(-200, 100);
             aux.z = 0;
             Ball newBall = Instantiate(BounceBall, aux, BounceBall.transform.rotation);
             spawn = false;
             GameControl.lost = false;
+            GameControl.control.incrementCurrNumberObjects();
         }
     }
 
