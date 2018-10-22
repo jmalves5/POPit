@@ -21,6 +21,7 @@ public class GameControl : MonoBehaviour
     private static float ObjectsNumber = 4;
     private static float spawningRate = 2;
     private static float currNumberofObjects = 0;
+    private static float ObjectTTL = 10f;
 
 
     public static string UsedJoint;  //Used joint to control cursor
@@ -105,6 +106,18 @@ public class GameControl : MonoBehaviour
     public void SetSpawnRate(float NewSpawnRate)
     {
         spawningRate = NewSpawnRate;
+    }
+
+    //Get object ttl (time to live)
+    public float getObjectTTL()
+    {
+        return ObjectTTL;
+    }
+
+    //Get object ttl (time to live)
+    public void SetObjectTTL(float NewObjectTTL)
+    {
+        ObjectTTL = NewObjectTTL;
     }
 
     //get number of objects

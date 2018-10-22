@@ -34,7 +34,7 @@ public class Ball : MonoBehaviour {
 
         if (!counting)
         {
-            StartCoroutine(WaitTime(GameControl.control.getNObjects()*5f));
+            StartCoroutine(WaitTime(GameControl.control.getObjectTTL()));
         }
             
     }
@@ -107,7 +107,7 @@ public class Ball : MonoBehaviour {
         yield return new WaitForSecondsRealtime(time2Count);
 
         //UNCOMMENT TO ENABLE OBJECT SELF-DESTRUCTION
-        //Destroy(transform.gameObject);
+        Destroy(transform.gameObject);
         counting = false;
     }
 }
