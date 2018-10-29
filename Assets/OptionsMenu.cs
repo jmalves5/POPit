@@ -8,15 +8,18 @@ using UnityEngine.SceneManagement;
 public class OptionsMenu : MonoBehaviour
 {
     //Declare Sliders
-    public UnityEngine.UI.Slider MaxObjectsSlider;
-    public UnityEngine.UI.Slider MaxVelocitySlider;
-    public UnityEngine.UI.Slider SpawningRateSlider;
-    public UnityEngine.UI.Slider TTLSlider;
+    public Slider MaxObjectsSlider;
+    public Slider MaxVelocitySlider;
+    public Slider SpawningRateSlider;
+    public Slider TTLSlider;
+    public Slider inibImpProbSlider;
+    public Toggle inibImpToggle;
 
     public Text MaxObjectstext;
     public Text MaxVelocitytext;
     public Text SpawningRatetext;
     public Text ObjectTTLtext;
+    public Text inibImpProbText;
 
     //On awake get current value to the sliders
     public void Start()
@@ -30,6 +33,8 @@ public class OptionsMenu : MonoBehaviour
         MaxVelocitySlider.value = GameControl.control.getVelocity()/100;
         SpawningRateSlider.value = GameControl.control.getSpawnRate();
         TTLSlider.value = GameControl.control.getObjectTTL();
+        inibImpProbSlider.value = GameControl.control.GetImpulseInibitionProb();
+        inibImpToggle.isOn = GameControl.control.GetImpulseInibitionBool();
     }
 
     public void PlayGame()
@@ -45,20 +50,34 @@ public class OptionsMenu : MonoBehaviour
     public void Update()
     {
         GameControl.control.SetNObjects(MaxObjectsSlider.value);
-        GameControl.control.SetVelocity(MaxVelocitySlider.value * 100);
+        GameControl.control.SetVelocity(MaxVelocitySlider.value*100);
         GameControl.control.SetSpawnRate(SpawningRateSlider.value);
+        GameControl.control.SetInibImpProb(inibImpProbSlider.value);
        
         MaxObjectstext.text = MaxObjectsSlider.value.ToString();
         MaxVelocitytext.text = MaxVelocitySlider.value.ToString();
         SpawningRatetext.text = SpawningRateSlider.value.ToString();
+        inibImpProbText.text = inibImpProbSlider.value.ToString();
         
         if (!TTLSlider.enabled)
         {
             ObjectTTLtext.text = "\u221E"; //simbolo de infinito
-            GameControl.control.SetObjectTTL(360000); //100 hours == infinito
+            GameControl.control.SetObjectTTL(360000); //100 hours == infinito. IF VALUE CHANGED CHANGE TTLToggle.cs --> Start() ACCORDINGLY
         }else {
             ObjectTTLtext.text = TTLSlider.value.ToString();
             GameControl.control.SetObjectTTL(TTLSlider.value);
         }
+
+        if (!inibImpProbSlider.enabled)
+        {
+            inibImpProbText.text = 0.ToString();
+            GameControl.control.SetInibImpProb(0f);
+        }
+        else
+        {
+            inibImpProbText.text = inibImpProbSlider.value.ToString();
+            GameControl.control.SetInibImpProb(inibImpProbSlider.value);
+        }
+
     }
 }

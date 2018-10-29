@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TTLToggle : MonoBehaviour
+public class InibImpToggle : MonoBehaviour
 {
-    public Slider TTLSlider;
-    public Text TTLText;
-  
+    public Slider InibImpSlider;
 
     public void Start()
     {
-        if (GameControl.control.getObjectTTL()==360000)
+        if (GameControl.control.GetImpulseInibitionBool())
         {
             this.GetComponentInParent<Toggle>().isOn = true;
         }
@@ -23,6 +21,7 @@ public class TTLToggle : MonoBehaviour
 
     public void ToggleEnable()
     {
-        TTLSlider.enabled = !TTLSlider.enabled;
+        InibImpSlider.enabled = !InibImpSlider.enabled;
+        GameControl.control.ToggleImpulseInibition();
     }
 }

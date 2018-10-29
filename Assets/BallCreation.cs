@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallCreation : MonoBehaviour {
     private bool spawn;
     public Ball BounceBall;
+    public BallRed BounceBallRed;
     private bool waiting;
     private Vector3 aux;
 
@@ -29,7 +30,20 @@ public class BallCreation : MonoBehaviour {
             aux.x = Random.Range(-300, 300);
             aux.y = Random.Range(-200, 100);
             aux.z = 0;
-            Ball newBall = Instantiate(BounceBall, aux, BounceBall.transform.rotation);
+
+            var r = Random.Range(0, 100);
+            if (r <= GameControl.control.GetImpulseInibitionProb() && GameControl.control.GetImpulseInibitionBool())
+            {
+                BallRed newBall = Instantiate(BounceBallRed, aux, BounceBallRed.transform.rotation);
+            }
+            else
+            {
+                Debug.Log(GameControl.control.GetImpulseInibitionBool());
+                Ball newBall = Instantiate(BounceBall, aux, BounceBall.transform.rotation);
+            }
+            
+
+            
             spawn = false;
             GameControl.lost = false;
             GameControl.control.incrementCurrNumberObjects();

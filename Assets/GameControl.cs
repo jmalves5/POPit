@@ -22,6 +22,8 @@ public class GameControl : MonoBehaviour
     private static float spawningRate = 2;
     private static float currNumberofObjects = 0;
     private static float ObjectTTL = 10f;
+    private static bool impulseInibition = true;
+    private static float impulseInibitionProb = 50f;
 
 
     public static string UsedJoint;  //Used joint to control cursor
@@ -167,6 +169,34 @@ public class GameControl : MonoBehaviour
         }
     }
 
+
+    //Get impulse inibition flag
+    public bool GetImpulseInibitionBool()
+    {
+        return impulseInibition;
+    }
+
+    //Toggle impulse inibtion flag
+    public void ToggleImpulseInibition()
+    {
+        impulseInibition = !impulseInibition;
+    }
+
+
+    //Get impulse inibition probability
+    public float GetImpulseInibitionProb()
+    {
+        return impulseInibitionProb;
+    }
+
+    //Set impulse inibition probability
+    public void SetInibImpProb(float NewimpulseInibitionProb)
+    {
+        impulseInibitionProb = NewimpulseInibitionProb;
+    }
+
+
+    //Joints functions
     public void SetUsedJoint(string joint)
     {
         UsedJoint = joint;

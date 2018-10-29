@@ -690,6 +690,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BounceBall: {fileID: 114795353667409186, guid: 9b3f6e004ff1d8b4db18e13c5680d120,
     type: 2}
+  BounceBallRed: {fileID: 114805996191006960, guid: 9a565534eb465984cb64696e9935a84c,
+    type: 2}
 --- !u!1001 &1277977643
 Prefab:
   m_ObjectHideFlags: 0
