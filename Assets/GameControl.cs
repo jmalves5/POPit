@@ -10,14 +10,11 @@ public class GameControl : MonoBehaviour
 {
     private BodySourceView BSV;
     public static GameControl control;
-
-    //private BodySourceView BSV;
-
-    //public static List<User> savedGames = new List<User>();
+    public static List<User> savedGames = new List<User>();
 
     //Declare game options variables
 
-    private static float Velocity = 200;  //plate velocity
+    private static float Velocity = 200; 
     private static float ObjectsNumber = 4;
     private static float spawningRate = 2;
     private static float currNumberofObjects = 0;
@@ -25,9 +22,11 @@ public class GameControl : MonoBehaviour
     private static bool impulseInibition = true;
     private static float impulseInibitionProb = 50f;
 
-
+    public static string PlayerName =  "";
     public static string UsedJoint;  //Used joint to control cursor
     public static bool lost = false;
+    public static bool addedUsers = false;
+    public static bool removedUsers = false;
     //public static string PlayerName; //player name
 
 
@@ -42,7 +41,7 @@ public class GameControl : MonoBehaviour
     private void Start()
     {
       //  UsedJoint = "HandLeft";
-      //  PlayerName = "----------------------------";
+        PlayerName = "----------------------------";
     }
 
     //Making this object a singleton using DontDestroyOnLoad()
@@ -180,6 +179,12 @@ public class GameControl : MonoBehaviour
     public void ToggleImpulseInibition()
     {
         impulseInibition = !impulseInibition;
+    }
+
+    //Set impulse inibtion flag
+    public void SetImpulseInibition(bool newii)
+    {
+        impulseInibition = newii;
     }
 
 
