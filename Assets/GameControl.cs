@@ -23,6 +23,9 @@ public class GameControl : MonoBehaviour
     private static bool impulseInibition = true;
     private static float impulseInibitionProb = 50f;
 
+    public static bool addedUsers = false;
+    public static bool removedUsers = false;
+
     public static string PlayerName =  "";
     public static string UsedJoint;  //Used joint to control cursor
     public static bool lost = false;

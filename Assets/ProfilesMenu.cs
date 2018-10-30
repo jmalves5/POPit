@@ -30,7 +30,7 @@ public class ProfilesMenu : MonoBehaviour {
     public void SaveUser() {
 
         Debug.Log("Updated Users");
-      
+        GameControl.addedUsers = true;
 
         User usr = new User();
         if (Regex.IsMatch(nameText.text, "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
@@ -116,7 +116,8 @@ public class ProfilesMenu : MonoBehaviour {
     }
 
     public void Delete()
-    { 
+    {
+        GameControl.removedUsers = true;
         //Find user and delete him. Then write new file
         int k = 0;
         List<User> GamesSavedAUX = new List<User>();

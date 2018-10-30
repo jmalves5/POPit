@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class TimerAndScore : MonoBehaviour {
     public Text timerText;
@@ -17,6 +19,30 @@ public class TimerAndScore : MonoBehaviour {
         //Update score & Timer
         UpdateTimerUI();
         UpdateScoreText();
+
+        //Update Highscore if that's the case
+        foreach (User usr in GameControl.savedGames)
+        {
+            if (usr.name == GameControl.PlayerName)
+            {
+                if (GameControl.control.GetScore() > usr.highscore)
+                {
+                    Debug.Log("here");
+                    usr.highscore = GameControl.control.GetScore();
+
+                    //Write to file
+                    BinaryFormatter bf = new BinaryFormatter();
+
+                    //Application.persistentDataPath is a string, so if you wanted you can put that into debug.log if you want to know where save games are located
+                    File.Delete(Application.persistentDataPath + "/savedGames.txt");
+                    FileStream file = File.Create(Application.persistentDataPath + "/savedGames.txt"); //you can call it anything you want
+                    bf.Serialize(file, GameControl.savedGames);
+                    file.Close();
+
+
+                }
+            }
+        }
 
     }
 

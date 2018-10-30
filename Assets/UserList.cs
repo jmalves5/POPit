@@ -16,9 +16,6 @@ public class UserList : MonoBehaviour {
         GameControl.savedGames.Clear();
         //Read file
         Load();
-
-        GameControl.savedGames.Sort(SortByScore);
-
         //Remove old texts
         DestroyTexts();
 
@@ -27,6 +24,42 @@ public class UserList : MonoBehaviour {
 
     }
 
+    public void FixedUpdate()
+    {
+        if (GameControl.addedUsers)
+        {
+            //Read file
+            Load();
+
+            GameControl.savedGames.Sort(SortByScore);
+
+            //Remove old texts
+            DestroyTexts();
+
+            //Populate lists
+            PopulateLists();
+
+
+
+            GameControl.addedUsers = false;
+        }
+
+
+        if (GameControl.removedUsers)
+        {
+            //Read file
+            Load();
+
+            GameControl.savedGames.Sort(SortByScore);
+
+            //Remove old texts
+            DestroyTexts();
+            //Populate lists
+            PopulateLists();
+
+            GameControl.removedUsers = false;
+        }
+    }
 
     public static void Load()
     {
