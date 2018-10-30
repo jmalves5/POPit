@@ -48,7 +48,7 @@ public class Ball : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        EdgesCollisions edgesCollisions = collision.transform.GetComponent<EdgesCollisions>();
+
 
         if (collision.gameObject.tag == "Cursor")
         {

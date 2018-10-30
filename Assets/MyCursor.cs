@@ -24,7 +24,7 @@ public class MyCursor : MonoBehaviour
         //Finding Game Objects
         KinectObject = GameObject.Find("GameControl");
         HandCursor = GameObject.Find("MyCursor");
-        newBodyScale = new Vector3(3, 3, 3);
+        newBodyScale = new Vector3(5, 5, 5);
         cam = FindObjectOfType<Camera>();
 
     }
@@ -38,6 +38,7 @@ public class MyCursor : MonoBehaviour
         {
 
             body.transform.localScale = newBodyScale;
+            body.transform.localPosition = new Vector3(0, 0, 0);
             ShearchForKinectJoints(usedArtic);
             HandFollow();
 
@@ -68,11 +69,11 @@ public class MyCursor : MonoBehaviour
     public void HandFollow()
     {
         Vector3 offset = new Vector3(0, 0, -60);
-        float smoothTime = 0.3F;
-        Vector3 velocity = Vector3.zero;
-        //GameControl.control.MyCursor.transform.position = Artic.transform.position + offset;
+        //float smoothTime = 0.3F;
+        //Vector3 velocity = Vector3.zero;
+        GameControl.control.MyCursor.transform.position = Artic.transform.position + offset;
         //TESTAR COM KINECT ESTE FILTRO
-        GameControl.control.MyCursor.transform.position = Vector3.SmoothDamp(GameControl.control.MyCursor.transform.position, Artic.transform.position + offset, ref velocity, smoothTime);
+        //GameControl.control.MyCursor.transform.position = Vector3.SmoothDamp(GameControl.control.MyCursor.transform.position, Artic.transform.position + offset, ref velocity, smoothTime);
 
     }
 

@@ -42,7 +42,7 @@ public class GameControl : MonoBehaviour
 
     private void Start()
     {
-      //  UsedJoint = "HandLeft";
+        UsedJoint = "HandRight";
         PlayerName = "---------";
     }
 
