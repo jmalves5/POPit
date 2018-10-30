@@ -49,7 +49,7 @@ public class MyCursor : MonoBehaviour
             //Follow hand with cursor
             Vector3 temp = Input.mousePosition;
             temp.z = 10f;                           // Set this to be the distance you want the object to be placed in front of the camera.
-            temp.y -= 22f;
+            temp.y -= 20f;
 
             if (Camera.main != null)
             {               //On scene shift camera is not instatiated (this if statement resolves error)

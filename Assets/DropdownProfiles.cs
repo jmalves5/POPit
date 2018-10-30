@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class DropdownProfiles : MonoBehaviour
 {
-    public List<string> names = new List<string>() { "----------------------------" };
+    public List<string> names = new List<string>() { "---------" };
     public Dropdown dropdown;
     public Text selectedUser;
     public OptionsMenu Options;
@@ -33,13 +33,12 @@ public class DropdownProfiles : MonoBehaviour
         {
             selectedUser.text = "Jogador: " + names[index];
 
-            //index-1 because first index of names is "-----------------"
-            //first index of saved games is a game
             GameControl.PlayerName = GameControl.savedGames[index - 1].name;
             GameControl.control.SetVelocity(GameControl.savedGames[index - 1].Velocity);
             GameControl.control.SetNObjects(GameControl.savedGames[index - 1].ObjectsNumber);
             GameControl.control.SetSpawnRate(GameControl.savedGames[index - 1].spawningRate);
             GameControl.control.SetObjectTTL(GameControl.savedGames[index - 1].ObjectTTL);
+            GameControl.control.SetTTLUnlimit(GameControl.savedGames[index - 1].TTLUnlimit);
             //GameControl.control.SetUsedJoint(GameControl.savedGames[index - 1].jointToUse);
             GameControl.control.SetImpulseInibition(GameControl.savedGames[index - 1].impulseInibition);
             GameControl.control.SetInibImpProb(GameControl.savedGames[index - 1].impulseInibitionProb);
@@ -60,7 +59,7 @@ public class DropdownProfiles : MonoBehaviour
     public void PopulateList() {
         
         names.Clear();
-        names.Add("----------------------------");
+        names.Add("---------");
         foreach (User usr in GameControl.savedGames)
         {
             names.Add(usr.name);

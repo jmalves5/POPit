@@ -14,6 +14,7 @@ public class OptionsMenu : MonoBehaviour
     public Slider TTLSlider;
     public Slider inibImpProbSlider;
     public Toggle inibImpToggle;
+    public Toggle TTLUnlimit;
 
     public Text MaxObjectstext;
     public Text MaxVelocitytext;
@@ -33,6 +34,7 @@ public class OptionsMenu : MonoBehaviour
         MaxVelocitySlider.value = GameControl.control.getVelocity()/100;
         SpawningRateSlider.value = GameControl.control.getSpawnRate();
         TTLSlider.value = GameControl.control.getObjectTTL();
+        TTLUnlimit.isOn = GameControl.control.getTTLUnlimit();
         inibImpProbSlider.value = GameControl.control.GetImpulseInibitionProb();
         inibImpToggle.isOn = GameControl.control.GetImpulseInibitionBool();
     }
@@ -52,12 +54,14 @@ public class OptionsMenu : MonoBehaviour
         GameControl.control.SetNObjects(MaxObjectsSlider.value);
         GameControl.control.SetVelocity(MaxVelocitySlider.value*100);
         GameControl.control.SetSpawnRate(SpawningRateSlider.value);
-        GameControl.control.SetInibImpProb(inibImpProbSlider.value);
-       
+
+        GameControl.control.SetTTLUnlimit(TTLUnlimit.isOn);
+        GameControl.control.SetImpulseInibition(inibImpToggle.isOn);
+   
         MaxObjectstext.text = MaxObjectsSlider.value.ToString();
         MaxVelocitytext.text = MaxVelocitySlider.value.ToString();
         SpawningRatetext.text = SpawningRateSlider.value.ToString();
-        inibImpProbText.text = inibImpProbSlider.value.ToString();
+        
         
         if (!TTLSlider.enabled)
         {
@@ -66,6 +70,7 @@ public class OptionsMenu : MonoBehaviour
         }else {
             ObjectTTLtext.text = TTLSlider.value.ToString();
             GameControl.control.SetObjectTTL(TTLSlider.value);
+
         }
 
         if (!inibImpProbSlider.enabled)
@@ -74,7 +79,7 @@ public class OptionsMenu : MonoBehaviour
             GameControl.control.SetInibImpProb(0f);
         }
         else
-        {
+        {  
             inibImpProbText.text = inibImpProbSlider.value.ToString();
             GameControl.control.SetInibImpProb(inibImpProbSlider.value);
         }

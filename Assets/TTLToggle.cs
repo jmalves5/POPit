@@ -11,18 +11,28 @@ public class TTLToggle : MonoBehaviour
 
     public void Start()
     {
-        if (GameControl.control.getObjectTTL()==360000)
+        if (GameControl.control.getTTLUnlimit())
         {
-            this.GetComponentInParent<Toggle>().isOn = true;
+            this.GetComponentInParent<Toggle>().isOn = false;
         }
         else
         {
-            this.GetComponentInParent<Toggle>().isOn = false;
+            this.GetComponentInParent<Toggle>().isOn = true;
         }
     }
 
     public void ToggleEnable()
     {
         TTLSlider.enabled = !TTLSlider.enabled;
+    }
+
+    public void ToggleOn()
+    {
+        TTLSlider.enabled = true;
+    }
+
+    public void ToggleOff()
+    {
+        TTLSlider.enabled = false;
     }
 }

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222993528656028964}
   - component: {fileID: 114186202673152800}
   - component: {fileID: 114309720148624270}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: UserScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,6 +104,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 178.64, y: 30}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 193.78, y: 193.86}
+  m_SizeDelta: {x: 186.79, y: 28.57}
+  m_Pivot: {x: 0, y: 0.5}

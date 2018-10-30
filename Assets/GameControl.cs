@@ -19,15 +19,14 @@ public class GameControl : MonoBehaviour
     private static float spawningRate = 2;
     private static float currNumberofObjects = 0;
     private static float ObjectTTL = 10f;
+    private static bool TTLUnlimit = false;
     private static bool impulseInibition = true;
     private static float impulseInibitionProb = 50f;
 
     public static string PlayerName =  "";
     public static string UsedJoint;  //Used joint to control cursor
     public static bool lost = false;
-    public static bool addedUsers = false;
-    public static bool removedUsers = false;
-    //public static string PlayerName; //player name
+
 
 
 
@@ -41,7 +40,7 @@ public class GameControl : MonoBehaviour
     private void Start()
     {
       //  UsedJoint = "HandLeft";
-        PlayerName = "----------------------------";
+        PlayerName = "---------";
     }
 
     //Making this object a singleton using DontDestroyOnLoad()
@@ -119,6 +118,17 @@ public class GameControl : MonoBehaviour
     public void SetObjectTTL(float NewObjectTTL)
     {
         ObjectTTL = NewObjectTTL;
+    }
+
+    //sET ttl TOGGLE
+    public void SetTTLUnlimit(bool newTTLUnlimit)
+    {
+        TTLUnlimit = newTTLUnlimit;
+    }
+
+    public bool getTTLUnlimit()
+    {
+        return TTLUnlimit;
     }
 
     //get number of objects

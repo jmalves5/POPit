@@ -13,6 +13,7 @@ public class User
     public float ObjectsNumber;
     public float spawningRate;
     public float ObjectTTL;
+    public bool TTLUnlimit;
     public bool impulseInibition;
     public float impulseInibitionProb;
     public float highscore;
@@ -25,6 +26,7 @@ public class User
         ObjectsNumber = 4;
         spawningRate = 2;
         ObjectTTL = 10f;
+        TTLUnlimit = false;
         impulseInibition = true;
         impulseInibitionProb = 50f;
         highscore = 0;
