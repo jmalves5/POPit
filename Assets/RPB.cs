@@ -21,8 +21,8 @@ public class RPB : MonoBehaviour {
         
         if (GameControl.control.GetBSV().IsTracked())  //Solucionar RPB
         {
-            Vector3 offset = new Vector3(0, 0, -60);
-            this.transform.position = myCursor.Artic.transform.position + offset;
+            Vector3 offset = new Vector3(0, 0, 1);
+            this.transform.position = myCursor.transform.position + offset;
    
         }
         else {

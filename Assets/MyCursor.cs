@@ -24,7 +24,7 @@ public class MyCursor : MonoBehaviour
         //Finding Game Objects
         KinectObject = GameObject.Find("GameControl");
         HandCursor = GameObject.Find("MyCursor");
-        newBodyScale = new Vector3(5, 5, 5);
+        newBodyScale = new Vector3(100, 100, 25);
         cam = FindObjectOfType<Camera>();
 
     }
@@ -38,7 +38,7 @@ public class MyCursor : MonoBehaviour
         {
 
             body.transform.localScale = newBodyScale;
-            body.transform.localPosition = new Vector3(0, 0, 0);
+            body.transform.localPosition = new Vector3(-150, -100, 0);
             ShearchForKinectJoints(usedArtic);
             HandFollow();
 
@@ -68,7 +68,7 @@ public class MyCursor : MonoBehaviour
     //Function to follow hand with cursor
     public void HandFollow()
     {
-        Vector3 offset = new Vector3(0, 0, -60);
+        Vector3 offset = new Vector3(0, 0, -Artic.transform.position.z -10);
         //float smoothTime = 0.3F;
         //Vector3 velocity = Vector3.zero;
         GameControl.control.MyCursor.transform.position = Artic.transform.position + offset;
