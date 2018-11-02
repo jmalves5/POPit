@@ -20,30 +20,6 @@ public class TimerAndScore : MonoBehaviour {
         UpdateTimerUI();
         UpdateScoreText();
 
-        //Update Highscore if that's the case
-        foreach (User usr in GameControl.savedGames)
-        {
-            if (usr.name == GameControl.PlayerName)
-            {
-                if (GameControl.control.GetScore() > usr.highscore)
-                {
-                    Debug.Log("here");
-                    usr.highscore = GameControl.control.GetScore();
-
-                    //Write to file
-                    BinaryFormatter bf = new BinaryFormatter();
-
-                    //Application.persistentDataPath is a string, so if you wanted you can put that into debug.log if you want to know where save games are located
-                    File.Delete(Application.persistentDataPath + "/savedGames.txt");
-                    FileStream file = File.Create(Application.persistentDataPath + "/savedGames.txt"); //you can call it anything you want
-                    bf.Serialize(file, GameControl.savedGames);
-                    file.Close();
-
-
-                }
-            }
-        }
-
     }
 
     //Update timer
@@ -52,17 +28,21 @@ public class TimerAndScore : MonoBehaviour {
         //set timer UI
         GameControl.control.TruesecondsCount += Time.deltaTime;
 
-        GameControl.control.secondsCount += Time.deltaTime;
-        timerText.text = "Tempo: " + GameControl.control.minuteCount + "m" + (int)GameControl.control.secondsCount + "s";
-        if (GameControl.control.secondsCount >= 60)
-        {
-            GameControl.control.minuteCount++;
-            GameControl.control.secondsCount = 0;
+        if (GameControl.control.TruesecondsCount < GameControl.control.getGameDuration()+1) {
+            GameControl.control.secondsCount += Time.deltaTime;
+            timerText.text = "Tempo: " + GameControl.control.minuteCount + "m" + (int)GameControl.control.secondsCount + "s";
+            if (GameControl.control.secondsCount >= 60)
+            {
+                GameControl.control.minuteCount++;
+                GameControl.control.secondsCount = 0;
+            }
+            else if (GameControl.control.minuteCount >= 60)
+            {
+                GameControl.control.minuteCount = 0;
+            }
+
         }
-        else if (GameControl.control.minuteCount >= 60)
-        {
-            GameControl.control.minuteCount = 0;
-        }
+        
     }
 
     //Score Update

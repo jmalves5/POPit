@@ -26,7 +26,7 @@ public class BallCreation : MonoBehaviour {
         if(!waiting)
             StartCoroutine(WaitTime(10f / GameControl.control.getSpawnRate())); //Ball generation time
 
-        if (spawn && GameControl.control.getCurrNumberObjects()<GameControl.control.getNObjects()) {
+        if (spawn && GameControl.control.getCurrNumberObjects()<GameControl.control.getNObjects() && GameControl.control.TruesecondsCount < GameControl.control.getGameDuration()) {
             aux.x = Random.Range(-300, 300);
             aux.y = Random.Range(-200, 100);
             aux.z = 0;

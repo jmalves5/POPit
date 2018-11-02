@@ -40,6 +40,8 @@ public class GameControl : MonoBehaviour
     public float secondsCount;
     public float TruesecondsCount;
     public int minuteCount;
+    public int goodPops=0;
+    public int badPops=0;
     public GameObject MyCursor;
 
 

@@ -54,6 +54,7 @@ public class Ball : MonoBehaviour {
         if (collision.gameObject.tag == "Cursor")
         {
             Debug.Log("Good Job");
+            GameControl.control.goodPops++;
             GameControl.control.incrementScore();
             Destroy(transform.gameObject);
             GameControl.control.decrementCurrNumberObjects();

@@ -53,6 +53,7 @@ public class BallRed : MonoBehaviour {
         if (collision.gameObject.tag == "Cursor")
         {
             Debug.Log("Bad Job");
+            GameControl.control.badPops++;
             GameControl.control.decrementScore();
             Destroy(transform.gameObject);
             GameControl.control.decrementCurrNumberObjects();
