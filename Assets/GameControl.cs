@@ -23,7 +23,7 @@ public class GameControl : MonoBehaviour
     private static bool TTLUnlimit = false;
     private static bool impulseInibition = true;
     private static float impulseInibitionProb = 50f;
-    private static float GameDuration = 5f;
+    private static float GameDuration = 300f;
 
     public static bool addedUsers = false;
     public static bool removedUsers = false;

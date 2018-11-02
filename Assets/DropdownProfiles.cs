@@ -54,7 +54,7 @@ public class DropdownProfiles : MonoBehaviour
             GameControl.control.SetTTLUnlimit(false);
             GameControl.control.SetImpulseInibition(true);
             GameControl.control.SetInibImpProb(50f);
-            GameControl.control.SetGameDuration(5f);
+            GameControl.control.SetGameDuration(300f);
             GameControl.PlayerName = "Convidado";
 
             Options.GetGameControlValues();

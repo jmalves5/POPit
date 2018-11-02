@@ -24,7 +24,7 @@ public class User
     {
         //jointToUse = "HandRight";
         this.name = "";
-        gameDuration = 5f;
+        gameDuration = 300f;
         Velocity = 200;
         ObjectsNumber = 4;
         spawningRate = 2;

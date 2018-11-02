@@ -8,7 +8,7 @@ public class GameSceneManagement : MonoBehaviour {
 
     public void Update()
     {
-        if (GameControl.control.TruesecondsCount >= GameControl.control.getGameDuration() * 60)
+        if (GameControl.control.TruesecondsCount >= GameControl.control.getGameDuration())
         {
             Debug.Log("end");
             SAVE.Save();

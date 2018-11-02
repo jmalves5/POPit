@@ -72,6 +72,7 @@ public class OptionsMenu : MonoBehaviour
         if (!TTLSlider.enabled)
         {
             ObjectTTLtext.text = "\u221E"; //simbolo de infinito
+            TTLSlider.value = TTLSlider.maxValue;
             GameControl.control.SetObjectTTL(360000); //100 hours == infinito. IF VALUE CHANGED CHANGE TTLToggle.cs --> Start() ACCORDINGLY
         }else {
             ObjectTTLtext.text = TTLSlider.value.ToString();
@@ -82,6 +83,7 @@ public class OptionsMenu : MonoBehaviour
         if (!inibImpProbSlider.enabled)
         {
             inibImpProbText.text = 0.ToString();
+            inibImpProbSlider.value = inibImpProbSlider.minValue;
             GameControl.control.SetInibImpProb(0f);
         }
         else
