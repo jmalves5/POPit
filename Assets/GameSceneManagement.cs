@@ -4,6 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameSceneManagement : MonoBehaviour {
+    public SaveLog SAVE;
+
+    public void Update()
+    {
+        if (GameControl.control.TruesecondsCount >= GameControl.control.getGameDuration() * 60)
+        {
+            Debug.Log("end");
+            SAVE.Save();
+            BacktoMenu();
+        }
+    }
 
     public void BacktoMenu()
     {
@@ -13,4 +24,6 @@ public class GameSceneManagement : MonoBehaviour {
         SceneManager.LoadScene("Menu");
 
     }
+
+    
 }

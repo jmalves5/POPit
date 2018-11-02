@@ -50,6 +50,8 @@ public class TimerAndScore : MonoBehaviour {
     public void UpdateTimerUI()
     {
         //set timer UI
+        GameControl.control.TruesecondsCount += Time.deltaTime;
+
         GameControl.control.secondsCount += Time.deltaTime;
         timerText.text = "Tempo: " + GameControl.control.minuteCount + "m" + (int)GameControl.control.secondsCount + "s";
         if (GameControl.control.secondsCount >= 60)

@@ -44,6 +44,7 @@ public class ProfilesMenu : MonoBehaviour {
             //usr.jointToUse = GameControl.UsedJoint;
             usr.impulseInibition = GameControl.control.GetImpulseInibitionBool();
             usr.impulseInibitionProb = GameControl.control.GetImpulseInibitionProb();
+            usr.gameDuration = GameControl.control.getGameDuration();
 
             usr.highscore = 0;
             invalidName.text = "";
@@ -67,6 +68,7 @@ public class ProfilesMenu : MonoBehaviour {
                 //usr.jointToUse = GameControl.UsedJoint;
                 user.impulseInibition = GameControl.control.GetImpulseInibitionBool();
                 user.impulseInibitionProb = GameControl.control.GetImpulseInibitionProb();
+                user.gameDuration = GameControl.control.getGameDuration();
                 if (user.highscore < GameControl.control.GetScore())
                     user.highscore = GameControl.control.GetScore(); 
 
@@ -137,8 +139,9 @@ public class ProfilesMenu : MonoBehaviour {
                     if ("Jogador: " + dropdown.names[i] == dropdown.selectedUser.text && dropdown.selectedUser.text != "Sem dados de jogador") dropdown.names.RemoveAt(i);
                 }
 
-                dropdown.selectedUser.text = "Sem dados de jogador";
+                dropdown.selectedUser.text = "Sem Dados de Jogador. Nenhum dado será guardado!";
                 dropdown.dropdown.value = 0;
+                GameControl.PlayerName = "Convidado";
 
 
                 Debug.Log(dropdown.selectedUser.text);

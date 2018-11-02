@@ -596,17 +596,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1150429658}
-        m_MethodName: Save
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1150429657}
         m_MethodName: BacktoMenu
         m_Mode: 1
@@ -1128,6 +1117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3fdd3ce7be9e4945b2c2dc58d1e9533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SAVE: {fileID: 1150429658}
 --- !u!114 &1150429658
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,6 +42,7 @@ public class DropdownProfiles : MonoBehaviour
             //GameControl.control.SetUsedJoint(GameControl.savedGames[index - 1].jointToUse);
             GameControl.control.SetImpulseInibition(GameControl.savedGames[index - 1].impulseInibition);
             GameControl.control.SetInibImpProb(GameControl.savedGames[index - 1].impulseInibitionProb);
+            GameControl.control.SetGameDuration(GameControl.savedGames[index-1].gameDuration);
 
             Options.GetGameControlValues();
         }
@@ -53,6 +54,7 @@ public class DropdownProfiles : MonoBehaviour
             GameControl.control.SetTTLUnlimit(false);
             GameControl.control.SetImpulseInibition(true);
             GameControl.control.SetInibImpProb(50f);
+            GameControl.control.SetGameDuration(5f);
             GameControl.PlayerName = "Convidado";
 
             Options.GetGameControlValues();

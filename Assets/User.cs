@@ -9,6 +9,7 @@ public class User
 
     //public string jointToUse;
     public string name;
+    public float gameDuration;
     public float Velocity;
     public float ObjectsNumber;
     public float spawningRate;
@@ -18,10 +19,12 @@ public class User
     public float impulseInibitionProb;
     public float highscore;
 
+
     public User()
     {
         //jointToUse = "HandRight";
         this.name = "";
+        gameDuration = 5f;
         Velocity = 200;
         ObjectsNumber = 4;
         spawningRate = 2;

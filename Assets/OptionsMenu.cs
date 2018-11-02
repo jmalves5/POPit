@@ -13,6 +13,7 @@ public class OptionsMenu : MonoBehaviour
     public Slider SpawningRateSlider;
     public Slider TTLSlider;
     public Slider inibImpProbSlider;
+    public Slider GameDurationSlider;
     public Toggle inibImpToggle;
     public Toggle TTLUnlimit;
 
@@ -21,6 +22,7 @@ public class OptionsMenu : MonoBehaviour
     public Text SpawningRatetext;
     public Text ObjectTTLtext;
     public Text inibImpProbText;
+    public Text GameDurationText;
 
     //On awake get current value to the sliders
     public void Start()
@@ -37,6 +39,8 @@ public class OptionsMenu : MonoBehaviour
         TTLUnlimit.isOn = GameControl.control.getTTLUnlimit();
         inibImpProbSlider.value = GameControl.control.GetImpulseInibitionProb();
         inibImpToggle.isOn = GameControl.control.GetImpulseInibitionBool();
+        GameDurationSlider.value = GameControl.control.getGameDuration()/60;
+
     }
 
     public void PlayGame()
@@ -54,6 +58,7 @@ public class OptionsMenu : MonoBehaviour
         GameControl.control.SetNObjects(MaxObjectsSlider.value);
         GameControl.control.SetVelocity(MaxVelocitySlider.value*100);
         GameControl.control.SetSpawnRate(SpawningRateSlider.value);
+        GameControl.control.SetGameDuration(GameDurationSlider.value * 60);
 
         GameControl.control.SetTTLUnlimit(TTLUnlimit.isOn);
         GameControl.control.SetImpulseInibition(inibImpToggle.isOn);
@@ -61,6 +66,7 @@ public class OptionsMenu : MonoBehaviour
         MaxObjectstext.text = MaxObjectsSlider.value.ToString();
         MaxVelocitytext.text = MaxVelocitySlider.value.ToString();
         SpawningRatetext.text = SpawningRateSlider.value.ToString();
+        GameDurationText.text = GameDurationSlider.value.ToString();
         
         
         if (!TTLSlider.enabled)

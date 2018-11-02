@@ -4,27 +4,30 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SaveLog : MonoBehaviour {
 
     public void Save()
     {
+
         if (GameControl.PlayerName != "Convidado")
         {
             List<string[]> rowData = new List<string[]>();
 
 
-            string[] rowDataTemp = new string[9];
+            string[] rowDataTemp = new string[10];
             rowDataTemp[0] = GameControl.PlayerName;
-            rowDataTemp[1] = GameControl.control.getVelocity().ToString();
-            rowDataTemp[2] = GameControl.control.getNObjects().ToString();
-            rowDataTemp[3] = GameControl.control.getSpawnRate().ToString();
-            rowDataTemp[4] = GameControl.control.getObjectTTL().ToString();
-            rowDataTemp[5] = GameControl.control.getTTLUnlimit().ToString();
-            rowDataTemp[6] = GameControl.control.GetImpulseInibitionBool().ToString();
-            rowDataTemp[7] = GameControl.control.GetImpulseInibitionProb().ToString();
-            rowDataTemp[8] = GameControl.control.GetScore().ToString();
+            rowDataTemp[1] = GameControl.control.getGameDuration().ToString();
+            rowDataTemp[2] = GameControl.control.getVelocity().ToString();
+            rowDataTemp[3] = GameControl.control.getNObjects().ToString();
+            rowDataTemp[4] = GameControl.control.getSpawnRate().ToString();
+            rowDataTemp[5] = GameControl.control.getObjectTTL().ToString();
+            rowDataTemp[6] = GameControl.control.getTTLUnlimit().ToString();
+            rowDataTemp[7] = GameControl.control.GetImpulseInibitionBool().ToString();
+            rowDataTemp[8] = GameControl.control.GetImpulseInibitionProb().ToString();
+            rowDataTemp[9] = GameControl.control.GetScore().ToString();
             Debug.Log(GameControl.control.GetScore().ToString());
             rowData.Add(rowDataTemp);
 
@@ -36,7 +39,7 @@ public class SaveLog : MonoBehaviour {
             }
 
             int length = output.GetLength(0);
-            string delimiter = ";";
+            string delimiter = ",";
 
             StringBuilder sb = new StringBuilder();
 
@@ -55,40 +58,53 @@ public class SaveLog : MonoBehaviour {
 
         if (GameControl.PlayerName != "Convidado")
         {
-            Directory.CreateDirectory(Application.persistentDataPath + "/DATA/" + GameControl.PlayerName);
- 
-            // Creating First row of titles manually..
-            string[] rowDataTemp = new string[9];
-            rowDataTemp[0] = "Name";
-            rowDataTemp[1] = "Ball Velocity";
-            rowDataTemp[2] = "Max Objects Number";
-            rowDataTemp[3] = "Spawning Rate";
-            rowDataTemp[4] = "Object Time to Live";
-            rowDataTemp[5] = "Infinite Time to Live";
-            rowDataTemp[6] = "Impulse Inibition";
-            rowDataTemp[7] = "Impulse Inibition Probability";
-            rowDataTemp[8] = "Score";
-            rowData.Add(rowDataTemp);
-
-            string[][] output = new string[rowData.Count][];
-
-            for (int i = 0; i < output.Length; i++)
+            if (!Directory.Exists(Application.persistentDataPath + "/DATA/" + GameControl.PlayerName))
             {
-                output[i] = rowData[i];
+                Directory.CreateDirectory(Application.persistentDataPath + "/DATA/" + GameControl.PlayerName); //windows only?
+                // Creating First row of titles manually..
+                string[] rowDataTemp = new string[10];
+                rowDataTemp[0] = "Name";
+                rowDataTemp[1] = "Game Duration";
+                rowDataTemp[2] = "Ball Velocity";
+                rowDataTemp[3] = "Max Objects Number";
+                rowDataTemp[4] = "Spawning Rate";
+                rowDataTemp[5] = "Object Time to Live";
+                rowDataTemp[6] = "Infinite Time to Live";
+                rowDataTemp[7] = "Impulse Inibition";
+                rowDataTemp[8] = "Impulse Inibition Probability";
+                rowDataTemp[9] = "Score";
+                rowData.Add(rowDataTemp);
+
+                string[][] output = new string[rowData.Count][];
+
+                for (int i = 0; i < output.Length; i++)
+                {
+                    output[i] = rowData[i];
+                }
+
+                int length = output.GetLength(0);
+                string delimiter = ",";
+
+                StringBuilder sb = new StringBuilder();
+
+                for (int index = 0; index < length; index++)
+                    sb.AppendLine(string.Join(delimiter, output[index]));
+
+
+                string filePath = Application.persistentDataPath + "/DATA/" + GameControl.PlayerName + "/Log.csv";
+
+                File.AppendAllText(filePath, sb.ToString());
             }
-
-            int length = output.GetLength(0);
-            string delimiter = ";";
-
-            StringBuilder sb = new StringBuilder();
-
-            for (int index = 0; index < length; index++)
-                sb.AppendLine(string.Join(delimiter, output[index]));
-
-
-            string filePath = Application.persistentDataPath + "/DATA/" + GameControl.PlayerName + "/Log.csv";
-
-            File.AppendAllText(filePath, sb.ToString());
         }
     }
+
+    public void Delete() //This must run before ProfilesMenu.Delete()
+    {
+        if (Directory.Exists(Application.persistentDataPath + "/DATA/" + GameControl.PlayerName))
+        {
+           Directory.Delete(Application.persistentDataPath + "/DATA/" + GameControl.PlayerName, true); //windows only?   
+        }
+    }
+
+
 }

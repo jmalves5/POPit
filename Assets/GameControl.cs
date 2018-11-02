@@ -23,6 +23,7 @@ public class GameControl : MonoBehaviour
     private static bool TTLUnlimit = false;
     private static bool impulseInibition = true;
     private static float impulseInibitionProb = 50f;
+    private static float GameDuration = 5f;
 
     public static bool addedUsers = false;
     public static bool removedUsers = false;
@@ -37,6 +38,7 @@ public class GameControl : MonoBehaviour
     //Time and score Counters
     private static int score = 0;  //Score
     public float secondsCount;
+    public float TruesecondsCount;
     public int minuteCount;
     public GameObject MyCursor;
 
@@ -97,6 +99,18 @@ public class GameControl : MonoBehaviour
     public void SetVelocity(float NewVelocity)
     {
         Velocity = NewVelocity;
+    }
+
+    //Get game duration
+    public float getGameDuration()
+    {
+        return GameDuration;
+    }
+
+    //Set game duration
+    public void SetGameDuration(float NewGameDuration)
+    {
+        GameDuration = NewGameDuration;
     }
 
 
