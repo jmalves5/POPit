@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class DropdownProfiles : MonoBehaviour
 {
-    public List<string> names = new List<string>() { "---------" };
+    public List<string> names = new List<string>() { "Convidado" };
     public Dropdown dropdown;
     public Text selectedUser;
     public OptionsMenu Options;
@@ -46,7 +46,18 @@ public class DropdownProfiles : MonoBehaviour
             Options.GetGameControlValues();
         }
         else {
-            selectedUser.text = "Sem dados de jogador";
+            GameControl.control.SetVelocity(200);
+            GameControl.control.SetNObjects(4);
+            GameControl.control.SetSpawnRate(2);
+            GameControl.control.SetObjectTTL(10f);
+            GameControl.control.SetTTLUnlimit(false);
+            GameControl.control.SetImpulseInibition(true);
+            GameControl.control.SetInibImpProb(50f);
+            GameControl.PlayerName = "Convidado";
+
+            Options.GetGameControlValues();
+
+            selectedUser.text = "Sem dados de jogador. Nenhum dado será guardado.";
         }
             
     }
@@ -59,7 +70,7 @@ public class DropdownProfiles : MonoBehaviour
     public void PopulateList() {
         
         names.Clear();
-        names.Add("---------");
+        names.Add("Convidado");
         foreach (User usr in GameControl.savedGames)
         {
             names.Add(usr.name);

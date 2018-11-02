@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.IO;
 
 
 //Game Control singleton. Used to manage multiple stages of the game
@@ -42,8 +43,9 @@ public class GameControl : MonoBehaviour
 
     private void Start()
     {
+        Directory.CreateDirectory(Application.persistentDataPath + "/Data");
         UsedJoint = "HandRight";
-        PlayerName = "---------";
+        PlayerName = "Convidado";
     }
 
     //Making this object a singleton using DontDestroyOnLoad()

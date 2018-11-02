@@ -2844,22 +2844,22 @@ Prefab:
     - target: {fileID: 224021743622483826, guid: e97c5f8aa1a7bec43b986cdb1a37189c,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 292.93
+      value: 286.68292
       objectReference: {fileID: 0}
     - target: {fileID: 224021743622483826, guid: e97c5f8aa1a7bec43b986cdb1a37189c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 13
+      value: 5.9499846
       objectReference: {fileID: 0}
     - target: {fileID: 224021743622483826, guid: e97c5f8aa1a7bec43b986cdb1a37189c,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: -734.3
+      value: -697.4
       objectReference: {fileID: 0}
     - target: {fileID: 224021743622483826, guid: e97c5f8aa1a7bec43b986cdb1a37189c,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: -490.9
+      value: -461.5
       objectReference: {fileID: 0}
     - target: {fileID: 224021743622483826, guid: e97c5f8aa1a7bec43b986cdb1a37189c,
         type: 2}
@@ -2890,6 +2890,16 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114779463731903456, guid: e97c5f8aa1a7bec43b986cdb1a37189c,
+        type: 2}
+      propertyPath: m_Text
+      value: "Sem Dados de Jogador. Nenhum dado ser\xE1 guardado!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114779463731903456, guid: e97c5f8aa1a7bec43b986cdb1a37189c,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e97c5f8aa1a7bec43b986cdb1a37189c, type: 2}

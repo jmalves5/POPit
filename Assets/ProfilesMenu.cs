@@ -33,7 +33,7 @@ public class ProfilesMenu : MonoBehaviour {
         GameControl.addedUsers = true;
 
         User usr = new User();
-        if (Regex.IsMatch(nameText.text, "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
+        if (Regex.IsMatch(nameText.text, "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$") && nameText.text != "Convidado" )
         {
             usr.name = nameText.text;
             usr.Velocity = GameControl.control.getVelocity();
@@ -55,7 +55,7 @@ public class ProfilesMenu : MonoBehaviour {
 
         foreach (User user in GameControl.savedGames)
         {
-            if (usr.name == user.name && Regex.IsMatch(nameText.text, "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
+            if (usr.name == user.name && Regex.IsMatch(nameText.text, "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$") && nameText.text != "Convidado")
             {
                 //Update user
                 Debug.Log("Repeated user, updated");
@@ -84,7 +84,7 @@ public class ProfilesMenu : MonoBehaviour {
         }
 
         if (!repeated) {
-            if (Regex.IsMatch(nameText.text, "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"))
+            if (Regex.IsMatch(nameText.text, "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$") && nameText.text != "Convidado")
             {
                 //Add user
                 GameControl.savedGames.Add(usr);
