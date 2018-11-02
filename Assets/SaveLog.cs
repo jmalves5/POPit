@@ -17,7 +17,7 @@ public class SaveLog : MonoBehaviour {
             List<string[]> rowData = new List<string[]>();
 
 
-            string[] rowDataTemp = new string[10];
+            string[] rowDataTemp = new string[12];
             rowDataTemp[0] = GameControl.PlayerName;
             rowDataTemp[1] = GameControl.control.getGameDuration().ToString();
             rowDataTemp[2] = GameControl.control.getVelocity().ToString();
@@ -28,6 +28,8 @@ public class SaveLog : MonoBehaviour {
             rowDataTemp[7] = GameControl.control.GetImpulseInibitionBool().ToString();
             rowDataTemp[8] = GameControl.control.GetImpulseInibitionProb().ToString();
             rowDataTemp[9] = GameControl.control.GetScore().ToString();
+            rowDataTemp[10] = GameControl.control.goodPops.ToString();
+            rowDataTemp[11] = GameControl.control.badPops.ToString();
             Debug.Log(GameControl.control.GetScore().ToString());
             rowData.Add(rowDataTemp);
 
@@ -62,7 +64,7 @@ public class SaveLog : MonoBehaviour {
             {
                 Directory.CreateDirectory(Application.persistentDataPath + "/DATA/" + GameControl.PlayerName); //windows only?
                 // Creating First row of titles manually..
-                string[] rowDataTemp = new string[10];
+                string[] rowDataTemp = new string[12];
                 rowDataTemp[0] = "Name";
                 rowDataTemp[1] = "Game Duration";
                 rowDataTemp[2] = "Ball Velocity";
@@ -73,6 +75,8 @@ public class SaveLog : MonoBehaviour {
                 rowDataTemp[7] = "Impulse Inibition";
                 rowDataTemp[8] = "Impulse Inibition Probability";
                 rowDataTemp[9] = "Score";
+                rowDataTemp[10] = "Good Pops";
+                rowDataTemp[11] = "Bad Pops";
                 rowData.Add(rowDataTemp);
 
                 string[][] output = new string[rowData.Count][];
