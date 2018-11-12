@@ -11,7 +11,9 @@ public class TimerAndScore : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        GameControl.control.TruesecondsCount = 0;
+        GameControl.control.minuteCount = (int)GameControl.control.getGameDuration() / 60;
+        GameControl.control.secondsCount = 1;
 	}
 	
 	// Update is called once per frame
@@ -27,19 +29,15 @@ public class TimerAndScore : MonoBehaviour {
     {
         //set timer UI
         GameControl.control.TruesecondsCount += Time.deltaTime;
+        GameControl.control.secondsCount -= Time.deltaTime;
 
         if (GameControl.control.TruesecondsCount < GameControl.control.getGameDuration()+1) {
-            GameControl.control.secondsCount += Time.deltaTime;
+            if (GameControl.control.secondsCount < 0)
+            {
+                GameControl.control.minuteCount--;
+                GameControl.control.secondsCount = 60;
+            }
             timerText.text = "Tempo: " + GameControl.control.minuteCount + "m" + (int)GameControl.control.secondsCount + "s";
-            if (GameControl.control.secondsCount >= 60)
-            {
-                GameControl.control.minuteCount++;
-                GameControl.control.secondsCount = 0;
-            }
-            else if (GameControl.control.minuteCount >= 60)
-            {
-                GameControl.control.minuteCount = 0;
-            }
 
         }
         
