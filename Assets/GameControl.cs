@@ -186,13 +186,22 @@ public class GameControl : MonoBehaviour
     //Increment the score
     public void incrementScore()
     {
-        score = score + 200;
+        score = score + 10*(int)GameControl.control.getNObjects()+1*(int)GameControl.control.getVelocity()+10*(int)GameControl.control.getSpawnRate()-1*(int)GameControl.control.getObjectTTL()+10*(int)GameControl.control.GetImpulseInibitionProb();
+        if (GameControl.control.getTTLUnlimit()) {
+            score = score + 360000;
+            score = score - 100;
+        }
     }
 
     //Decrement the score
     public void decrementScore()
     {
-        score = score - 200;
+        score = score - 10 * (int)GameControl.control.getNObjects() - 1 * (int)GameControl.control.getVelocity() - 10 * (int)GameControl.control.getSpawnRate() + 1 * (int)GameControl.control.getObjectTTL() - 10 * (int)GameControl.control.GetImpulseInibitionProb(); ;
+        if (GameControl.control.getTTLUnlimit())
+        {
+            score = score - 360000;
+            score = score + 100;
+        }
         if (score < 0)
         {
             score = 0;
